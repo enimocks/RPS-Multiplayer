@@ -16,6 +16,7 @@ $(document).ready(function () {
   // Create a variable to reference the database
   var database = firebase.database();
 
+  // SEND FORM INPUT TO DATABASE ===============================================================================
   // Click event that pushes added trains to Firebase when the submit button is clicked, push creates new records each time a submission is entered
   $(document).on("click", "#submit", function (event) {
 
@@ -53,7 +54,6 @@ $(document).ready(function () {
     // TIME CALCULATIONS
     // =========================================================================================
 
-
     // First Time (pushed back 1 year to make sure it comes before current time)
     var firstTimeConverted = moment(childSnapshot.val().firstTrainTime, "HH:mm").subtract(1, "years");
     console.log("first time converted: " + firstTimeConverted);
@@ -81,6 +81,7 @@ $(document).ready(function () {
     // Formatted nextTrainTime to AM/PM time format
     var nextArrival = moment(nextTrainTime).format("HH:mm");
 
+    // APPEND TO TABLE =============================================================================
     // Appending a new row of table data - using ES6 syntax (templating) - when there is a child added to the root of our firebase database
     $(".table").append(
       `
